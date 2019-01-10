@@ -15,7 +15,6 @@ class DangerousComponent extends Component {
   }
 }
 
-// const dangerous = html => <DangerousComponent html={html} />;
 export default function dangerous(...args) {
   const WrappedStyledComponent = React.forwardRef((props, ref) => (
     <DangerousComponent args={args} {...props} forwardedRef={ref} />
