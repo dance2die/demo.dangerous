@@ -8,9 +8,7 @@ class DangerousComponent extends Component {
     const [texts, ...callbacks] = args;
 
     const __html = texts
-      .map((text, i) => {
-        return `${text}${args[i + 1] ? callbacks[i](this.props) : ""}`;
-      })
+      .map((text, i) => `${text}${args[i + 1] ? callbacks[i](this.props) : ""}`)
       .reduce((unsafeText, line) => (unsafeText += line), "");
 
     return <a ref={forwardedRef} dangerouslySetInnerHTML={{ __html }} />;
