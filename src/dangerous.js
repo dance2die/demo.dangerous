@@ -13,9 +13,7 @@ class DangerousComponent extends Component {
       })
       .reduce((unsafeText, line) => (unsafeText += line), "");
 
-    return (
-      <a ref={forwardedRef} dangerouslySetInnerHTML={{ __html }} {...rest} />
-    );
+    return <a ref={forwardedRef} dangerouslySetInnerHTML={{ __html }} />;
   }
 }
 
