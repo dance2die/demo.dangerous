@@ -9,17 +9,18 @@ import domElements from "./domElements";
 
 class DangerousComponent extends Component {
   render() {
-    const { args, forwardedRef, children } = this.props;
-    const texts = args[0];
+    const { args, forwardedRef, ...rest } = this.props;
+    const [texts, ...callbacks] = args;
+
     const __html = texts
       .map((text, i) => {
-        return `${text}${args[i + 1] ? args[i + 1](this.props) : ""}`;
+        return `${text}${args[i + 1] ? callbacks[i](this.props) : ""}`;
       })
       .reduce((unsafeText, line) => (unsafeText += line), "");
 
-    console.log(`DangerousComponent`, __html);
-
-    return <div ref={forwardedRef} dangerouslySetInnerHTML={{ __html }} />;
+    return (
+      <a ref={forwardedRef} dangerouslySetInnerHTML={{ __html }} {...rest} />
+    );
   }
 }
 
