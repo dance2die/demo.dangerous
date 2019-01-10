@@ -2,11 +2,6 @@ import React, { Component } from "react";
 import { isValidElementType } from "react-is";
 import domElements from "./domElements";
 
-// // https://reactjs.org/docs/dom-elements.html#dangerouslysetinnerhtml
-// function DangerousComponent({ html, as: Component, ...rest }) {
-//   return <Component dangerouslySetInnerHTML={{ __html: html }} {...rest} />;
-// }
-
 class DangerousComponent extends Component {
   render() {
     const { args, forwardedRef, ...rest } = this.props;
