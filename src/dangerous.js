@@ -4,7 +4,7 @@ import domElements from "./domElements";
 
 class DangerousComponent extends Component {
   render() {
-    const { args, forwardedRef, ...rest } = this.props;
+    const { args, forwardedRef } = this.props;
     const [texts, ...callbacks] = args;
 
     const __html = texts
