@@ -16,6 +16,9 @@ function DangerousComponent(props) {
 }
 
 function constructWithOptions(tag, args) {
+  if (!isValidElementType(tag))
+    throw new Error(`${tag} is not a valid React element`);
+
   const WrappedComponent = React.forwardRef((props, ref) => (
     <DangerousComponent as={tag} args={args} forwardedRef={ref} {...props} />
   ));
