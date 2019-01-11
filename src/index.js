@@ -5,12 +5,13 @@ import dangerous from "./dangerous";
 
 import "./styles.css";
 
-const Dangerous = dangerous`
+const Dangerous = dangerous.div`
   <h1>Who am I?</h1>
   <p>Last Name is "${props => props.lastName}"</p>
   <p>First Name is "${props => props.firstName}"</p>
 `;
 
+// console.log(`dangerous`, dangerous.div);
 function App() {
   return (
     <div className="App">
