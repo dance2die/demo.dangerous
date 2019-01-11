@@ -6,9 +6,11 @@ function DangerousComponent(props) {
   const { as: WrappedComponent, args, forwardedRef } = props;
   const [texts, ...callbacks] = args;
 
-  const __html = texts
-    .map((text, i) => `${text}${args[i + 1] ? callbacks[i](props) : ""}`)
-    .reduce((unsafeText, line) => (unsafeText += line), "");
+  const toLines = (text, i) =>
+    `${text}${args[i + 1] ? callbacks[i](props) : ""}`;
+  const toHtml = (unsafeText, line) => (unsafeText += line);
+
+  const __html = texts.map(toLines).reduce(toHtml, "");
 
   return (
     <WrappedComponent ref={forwardedRef} dangerouslySetInnerHTML={{ __html }} />
