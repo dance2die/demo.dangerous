@@ -5,6 +5,7 @@
   "keywords": [],
   "main": "src/index.js",
   "dependencies": {
+    "hoist-non-react-statics": "3.2.1",
     "react": "^16.0.0",
     "react-dom": "^16.0.0",
     "react-is": "16.7.0",

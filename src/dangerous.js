@@ -1,6 +1,7 @@
 import React from "react";
 import { isValidElementType } from "react-is";
 import domElements from "./domElements";
+import hoistNonReactStatic from "hoist-non-react-statics";
 
 import isTag from "./utils/isTag";
 
@@ -28,6 +29,8 @@ function contructWithArgs(tag, args) {
   ));
 
   WrappedComponent.displayName = `ContructWithArgs(${getDisplayName(tag)})`;
+
+  hoistNonReactStatic(WrappedComponent, tag);
 
   return WrappedComponent;
 }
