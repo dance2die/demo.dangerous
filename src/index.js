@@ -5,6 +5,9 @@ import dangerous from "./dangerous";
 
 import "./styles.css";
 
+// const Block = ({ ...props }) => <div {...props} />;
+// const Dangerous = dangerous(Block)`
+
 const Dangerous = dangerous.div`
   <h1>Who am I?</h1>
   <p>Last Name is "${props => props.lastName}"</p>

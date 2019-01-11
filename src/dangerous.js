@@ -2,6 +2,8 @@ import React from "react";
 import { isValidElementType } from "react-is";
 import domElements from "./domElements";
 
+import isTag from "./utils/isTag";
+
 function DangerousComponent(props) {
   const { as: WrappedComponent, args, forwardedRef } = props;
   const [texts, ...callbacks] = args;
@@ -17,7 +19,7 @@ function DangerousComponent(props) {
   );
 }
 
-function constructWithOptions(tag, args) {
+function contructWithArgs(tag, args) {
   if (!isValidElementType(tag))
     throw new Error(`${tag} is not a valid React element`);
 
@@ -25,10 +27,18 @@ function constructWithOptions(tag, args) {
     <DangerousComponent as={tag} args={args} forwardedRef={ref} {...props} />
   ));
 
+  WrappedComponent.displayName = `ContructWithArgs(${getDisplayName(tag)})`;
+
   return WrappedComponent;
 }
 
-const dangerous = tag => (...args) => constructWithOptions(tag, args);
+function getDisplayName(WrappedComponent) {
+  if (isTag(WrappedComponent)) return `dangerous.${WrappedComponent}`;
+
+  return WrappedComponent.displayName || WrappedComponent.name || "Component";
+}
+
+const dangerous = tag => (...args) => contructWithArgs(tag, args);
 
 // Shorthands for all valid HTML Elements
 domElements.forEach(domElement => {
