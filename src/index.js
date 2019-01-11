@@ -15,7 +15,7 @@ const Dangerous = dangerous.div`
 function App() {
   return (
     <div className="App">
-      <Dangerous firstName="Sung" lastName="Kim" />
+      <Dangerous safe firstName="Sung" lastName="Kim" />
     </div>
   );
 }

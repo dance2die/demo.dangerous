@@ -1,23 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
 import { isValidElementType } from "react-is";
 import domElements from "./domElements";
 
-class DangerousComponent extends Component {
-  render() {
-    const { as: WrappedComponent, args, forwardedRef } = this.props;
-    const [texts, ...callbacks] = args;
+function DangerousComponent(props) {
+  const { as: WrappedComponent, args, forwardedRef } = props;
+  const [texts, ...callbacks] = args;
 
-    const __html = texts
-      .map((text, i) => `${text}${args[i + 1] ? callbacks[i](this.props) : ""}`)
-      .reduce((unsafeText, line) => (unsafeText += line), "");
+  const __html = texts
+    .map((text, i) => `${text}${args[i + 1] ? callbacks[i](props) : ""}`)
+    .reduce((unsafeText, line) => (unsafeText += line), "");
 
-    return (
-      <WrappedComponent
-        ref={forwardedRef}
-        dangerouslySetInnerHTML={{ __html }}
-      />
-    );
-  }
+  return (
+    <WrappedComponent ref={forwardedRef} dangerouslySetInnerHTML={{ __html }} />
+  );
 }
 
 function constructWithOptions(tag, args) {
