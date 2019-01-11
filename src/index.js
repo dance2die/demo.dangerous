@@ -8,6 +8,7 @@ import "./styles.css";
 // const Block = ({ ...props }) => <div {...props} />;
 
 class Block extends React.Component {
+  // To check if static fields are hoised correctly
   static count = 10;
   static increaseCount = () => console.log(++Block.count);
   static decreaseCount = () => console.log(--Block.count);
